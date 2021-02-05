@@ -42,7 +42,7 @@
           </thead>
           <tr v-if="people.length === 0">
             <td colspan="6" class="no-results text-center">
-              No results for you search
+              No results for your search
             </td>
           </tr>
           <tr v-for="person of people" :key="person.url" class="tr">
