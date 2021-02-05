@@ -10,7 +10,7 @@
             <Input
               v-model="personName"
               @keyup.enter.native="getPeople(`?search=${personName}`)"
-              label="Search"
+              label="Search by Name"
             />
             <div>
               <Button
@@ -101,7 +101,7 @@ export default {
     Card,
     Button,
     Input,
-    DialogPlanet
+    DialogPlanet,
   },
   data() {
     return {
@@ -123,7 +123,7 @@ export default {
           value: "name",
           type: "string",
           sort: false,
-          reverse: false
+          reverse: false,
         },
         {
           id: 2,
@@ -131,7 +131,7 @@ export default {
           value: "height",
           type: "number",
           sort: false,
-          reverse: false
+          reverse: false,
         },
         {
           id: 3,
@@ -139,7 +139,7 @@ export default {
           value: "mass",
           type: "number",
           sort: false,
-          reverse: false
+          reverse: false,
         },
         {
           id: 4,
@@ -147,7 +147,7 @@ export default {
           value: "created",
           type: "date",
           sort: false,
-          reverse: false
+          reverse: false,
         },
         {
           id: 5,
@@ -155,7 +155,7 @@ export default {
           value: "edited",
           type: "date",
           sort: false,
-          reverse: false
+          reverse: false,
         },
         {
           id: 6,
@@ -163,9 +163,9 @@ export default {
           value: "planetName",
           type: "string",
           sort: false,
-          reverse: false
-        }
-      ]
+          reverse: false,
+        },
+      ],
     };
   },
   mounted() {
@@ -178,7 +178,7 @@ export default {
       this.people = [];
       await this.$axios
         .get(peopleUrl)
-        .then(async response => {
+        .then(async (response) => {
           const people = response.data.results;
           this.nextPage = response.data.next;
           this.previousPage = response.data.previous;
@@ -200,14 +200,14 @@ export default {
       const planetCached = this.checkPlanet(planetUrl);
       if (planetCached !== undefined) return planetCached;
 
-      return await this.$axios.get(planetUrl).then(response => {
+      return await this.$axios.get(planetUrl).then((response) => {
         const planet = response.data;
         this.planets.push(planet);
         return planet;
       });
     },
     checkPlanet(planetUrl) {
-      return this.planets.find(planet => planet.url === planetUrl);
+      return this.planets.find((planet) => planet.url === planetUrl);
     },
     getPageNumber(peopleUrl) {
       if (!peopleUrl) return 1;
@@ -224,7 +224,7 @@ export default {
       this.dialogPlanet = {};
     },
     sort(item) {
-      this.headers.forEach(header => {
+      this.headers.forEach((header) => {
         if (header.id !== item.id) {
           header.sort = false;
           header.reverse = false;
@@ -259,8 +259,8 @@ export default {
       return this.people.sort(
         (a, b) => new Date(a[field]) - new Date(b[field])
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
