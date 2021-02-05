@@ -4,8 +4,14 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    appLoading: false
+  },
+  mutations: {
+    setAppLoading(state, appLoading) {
+      state.appLoading = appLoading;
+    }
+  },
   actions: {},
   modules: {}
 });
